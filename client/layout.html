@@ -1,0 +1,16 @@
+<template name="layout">
+	<header>
+		<h1>SECRET PROJECT</h1>
+		<nav id="navbar">
+			<ul>
+				<li><a href="/">Calendar</a></li>
+				<li><a href="/messages">Messages</a></li>
+				<li><a href="/profile">Profile</a></li>
+			</ul>
+		</nav>
+	</header>
+	<hr>
+	<div id="content">
+		{{> yield}}
+	</div>
+</template>
