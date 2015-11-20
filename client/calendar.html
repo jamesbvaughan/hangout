@@ -1,12 +1,10 @@
 <template name="calendar">
-	<ul>
-		{{#each events}}
-			{{> event}}
-		{{/each}}
-	</ul>
+	<div class="selectedEvent">
+		<b>SELECTED EVENT: {{selectedTitle}}</b>
+		{{#if eventSelected}}
+			<button class="delete">DELETE</button>
+		{{/if}}
+	</div>
+	<hr>
 	{{> fullcalendar calendarOptions}}
-</template>
-
-<template name="event">
-	<li><b>{{title}}</b> from <b>{{start}}</b> to <b>{{end}}</b>	<button class="delete">DELETE</button></li>
 </template>

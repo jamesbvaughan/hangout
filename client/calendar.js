@@ -9,31 +9,47 @@ Template.calendar.helpers({
 			select: function (start, end) {
 				var title = prompt("Where to go?");
 				var eventData;
-				console.log("Trying to add event " + title +
-							" starting at " + start.format() +
-							" and ending at " + end.format());
 				if (title) {
 					eventData = {
 						title: title,
 						start: start.toDate(),
 						end: end.toDate()
 					};
-					console.log("Made thing for event " + title +
-								" starting at " + start.format() +
-								" and ending at " + end.format());
 					Meteor.call("addHangout", eventData);
-					console.log("CLIENT: " + Hangouts.find().fetch())
-					console.log(Hangouts.find().fetch())
-					//$("#main-calendar").fullCalendar('renderEvent', eventData, true);
 				}
 				$("#main-calendar").fullCalendar("unselect");
 			},
 			editable: true,
-			timezone: "local"
+			eventDrop: function (event) {
+				Meteor.call("moveHangout",
+							event.id,
+							event.start.toDate(),
+							event.end.toDate());
+			},
+			eventResize: function (event) {
+				Meteor.call("moveHangout",
+							event.id,
+							event.start.toDate(),
+							event.end.toDate());
+			},
+			timezone: "local",
+			allDaySlot: false,
+			eventClick: function (event) {
+				Session.set("selectedEvent", event.id);
+			},
+			eventColor: "#000000"
 		};
 	},
-	events: function () {
-		return Hangouts.find().fetch();
+	eventSelected: function () {
+		return Hangouts.findOne(Session.get("selectedEvent"));
+	},
+	selectedTitle: function () {
+		var selected = Session.get("selectedEvent");
+		if (Hangouts.findOne(selected)) {
+			return Hangouts.findOne(selected).title;
+		} else {
+			return "No event selected";
+		}
 	}
 });
 
@@ -47,6 +63,7 @@ function updateCalendar() {
 		$("#main-calendar").fullCalendar(
 			"renderEvent",
 			{
+				id: hang._id,
 				title: hang.title,
 				start: moment(hang.start),
 				end: moment(hang.end)
@@ -57,8 +74,8 @@ function updateCalendar() {
 
 Tracker.autorun(updateCalendar);
 
-Template.event.events({
+Template.calendar.events({
 	"click .delete": function () {
-		Meteor.call("removeHangout", this._id);
+		Meteor.call("removeHangout", Session.get("selectedEvent"));
 	}
 });
