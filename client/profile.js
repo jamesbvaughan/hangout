@@ -1,5 +1,7 @@
 Template.profile.helpers({
-	name:  Meteor.user().profile.name
+	name: function () {
+		return Meteor.user().profile.name
+	}
 });
 
 Template.profile.events({

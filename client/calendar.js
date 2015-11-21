@@ -4,7 +4,7 @@ Template.calendar.helpers({
 			id: "main-calendar",
 			defaultView: "agendaWeek",
 			minTime: "07:00:00",
-			selectable: true,
+			selectable: Meteor.userId(),
 			selectHelper: true,
 			select: function (start, end) {
 				var title = prompt("Where to go?");
@@ -35,7 +35,8 @@ Template.calendar.helpers({
 		};
 	},
 	eventSelected: function () {
-		return Hangouts.findOne(Session.get("selectedEvent"));
+		var event = Hangouts.findOne(Session.get("selectedEvent"));
+		return Meteor.userId() && event.owner == Meteor.userId();
 	},
 	selectedTitle: function () {
 		var selected = Session.get("selectedEvent");
@@ -61,7 +62,7 @@ function updateCalendar() {
 				title: hang.title,
 				start: moment(hang.start),
 				end: moment(hang.end),
-				editable: (Meteor.userId() == hang.owner)
+				editable: (Meteor.userId() && Meteor.userId() == hang.owner)
 			},
 			true);
 	});
