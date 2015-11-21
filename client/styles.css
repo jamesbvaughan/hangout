@@ -6,7 +6,7 @@ header {
 
 #navbar ul li {
 	display: inline;
-	margin-right: 30px;
+	margin-right: 20px;
 }
 
 #navbar ul li a {
@@ -21,4 +21,12 @@ a {
 #content {
 	padding-left: 50px;
 	padding-right: 50px;
+}
+
+.fc-event {
+	border-radius: 0px;
+}
+
+.logout {
+	cursor: pointer;
 }

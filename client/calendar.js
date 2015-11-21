@@ -8,14 +8,8 @@ Template.calendar.helpers({
 			selectHelper: true,
 			select: function (start, end) {
 				var title = prompt("Where to go?");
-				var eventData;
 				if (title) {
-					eventData = {
-						title: title,
-						start: start.toDate(),
-						end: end.toDate()
-					};
-					Meteor.call("addHangout", eventData);
+					Meteor.call("addHangout", title, start.toDate(), end.toDate());
 				}
 				$("#main-calendar").fullCalendar("unselect");
 			},
@@ -66,7 +60,8 @@ function updateCalendar() {
 				id: hang._id,
 				title: hang.title,
 				start: moment(hang.start),
-				end: moment(hang.end)
+				end: moment(hang.end),
+				editable: (Meteor.userId() == hang.owner)
 			},
 			true);
 	});
