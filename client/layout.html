@@ -1,16 +1,22 @@
 <template name="layout">
 	<div class="container">
 	<header>
-		<h1>SECRET PROJECT</h1>
+		<h1><strong>Hangout</strong></h1>
 		<nav id="navbar">
 			<ul>
-				<li><a href="/">Calendar</a></li>
-				<li><a href="/messages">Messages</a></li>
-				<li><a href="/profile">Profile</a></li>
+				<li><a href="/howto">How To Use</a></li>
+				{{#if currentUser}}
+					<li><a href="/">Calendar</a></li>
+					<li><a href="/messages">Messages</a></li>
+					<li><a href="/profile">Profile</a></li>
+				{{else}}
+					<li><a href="/profile" class="logout">Login</a></li>
+				{{/if}}
 			</ul>
 		</nav>
 	</header>
 	<hr>
-		{{> yield}}
+	{{> yield}}
+	<hr>
 	</div>
 </template>

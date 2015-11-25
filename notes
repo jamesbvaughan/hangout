@@ -1,0 +1,33 @@
+Hangouts by James
+
+About
+	Purpose
+		To facilitate one-on-one hangouts between people who normally wouldn't.
+	What is it?
+		A web and mobile app
+	Who is it for?
+		SEP
+		Maybe other already established groups if SEP likes it
+
+Pages
+	Landing
+		About hangouts
+		Sign up
+	Calendar
+		Only a week or two ahead of today, max, to lessen the potential of people forgetting about hangouts they scheduled.
+		Add hangouts
+		See other hangouts
+		Join other hangouts
+	Messages
+		Chat with users who you are going to hang out with
+		Organize specifics of where and when to meet up
+	Profile
+		Log out
+		Delete account
+		Usage stats?
+
+Problems
+	To be most effective, users must manually add their hangouts to their personal calendars as well. This is an inconvenience.
+
+Thoughts
+	I would like to ditch the messages page, both to keep the product simple and to remove the possibility of users learning who they're going to hang out with by their messages. One option would be to have messages go through an email system similar to what craigslist does. That would solve the simplicity issue, but would do nothing to solve the other issue.	

@@ -4,6 +4,7 @@ Template.calendar.helpers({
 			id: "main-calendar",
 			defaultView: "agendaWeek",
 			minTime: "07:00:00",
+			contentHeight: "auto",
 			selectable: Meteor.userId(),
 			selectHelper: true,
 			select: function (start, end) {
@@ -14,6 +15,13 @@ Template.calendar.helpers({
 				$("#main-calendar").fullCalendar("unselect");
 			},
 			editable: true,
+			views: {
+				agendaWeek: {
+					intervalStart: function () {
+						return moment().stripTime();
+					}
+				}
+			},
 			eventDrop: function (event) {
 				Meteor.call("moveHangout",
 							event.id,
