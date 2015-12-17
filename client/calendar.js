@@ -47,7 +47,10 @@ Template.calendar.helpers({
 			eventColor: "#000000"
 		};
 	},
-	ownsEventSelected: function () {
+	isEventSelected: function () {
+		return Hangouts.findOne(Session.get("selectedEvent"));
+	},
+	ownsSelectedEvent: function () {
 		var event = Hangouts.findOne(Session.get("selectedEvent"));
 		return Meteor.userId() && event.owner == Meteor.userId();
 	},
@@ -78,7 +81,13 @@ function updateCalendar() {
 	Hangouts.find().forEach(function (hang) {
 		titleText = hang.title;
 		if (hang.guest) {
-			titleText = hang.title + " (Guest Added)";
+			titleText = titleText + " (Guest Added)";
+			if (hang.guest == Meteor.userId()) {
+				titleText = titleText + " (You are the guest)";
+			}
+		}
+		if (hang.owner == Meteor.userId()) {
+			titleText = titleText + " (You are the owner)";
 		}
 		$("#main-calendar").fullCalendar(
 			"renderEvent",
@@ -105,7 +114,7 @@ Template.calendar.events({
 		}});
 	},
 	"click .leave": function () {
-		Hangouts.update(id, {$unset: {
+		Hangouts.update(Session.get("selectedEvent"), {$unset: {
 			guest: ""
 		}});
 	}

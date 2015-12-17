@@ -1,14 +1,16 @@
 <template name="calendar">
 	<div class="selectedEvent">
 		<b>SELECTED EVENT: {{selectedTitle}}</b>
-		{{#if ownsEventSelected}}
-			<button class="delete">DELETE</button>
-		{{/if}}
-		{{#if joinable}}
-			<button class="join">JOIN</button>
-		{{/if}}
-		{{#if joined}}
-			<button class="leave">LEAVE</button>
+		{{#if isEventSelected}}
+			{{#if ownsSelectedEvent}}
+				<button class="delete">DELETE</button>
+			{{/if}}
+			{{#if joinable}}
+				<button class="join">JOIN</button>
+			{{/if}}
+			{{#if joined}}
+				<button class="leave">LEAVE</button>
+			{{/if}}
 		{{/if}}
 	</div>
 	<hr>
