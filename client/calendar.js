@@ -10,11 +10,16 @@ Template.calendar.helpers({
 			select: function (start, end) {
 				var title = prompt("Where to go?");
 				if (title) {
-					Meteor.call("addHangout", title, start.toDate(), end.toDate());
+					Hangouts.insert({
+						title: title,
+						start: start.toDate(),
+						end: end.toDate(),
+						createdAt: new Date(),
+						owner: Meteor.userId()
+					});
 				}
 				$("#main-calendar").fullCalendar("unselect");
 			},
-			editable: true,
 			views: {
 				agendaWeek: {
 					intervalStart: function () {
@@ -23,16 +28,16 @@ Template.calendar.helpers({
 				}
 			},
 			eventDrop: function (event) {
-				Meteor.call("moveHangout",
-							event.id,
-							event.start.toDate(),
-							event.end.toDate());
+				Hangouts.update(event.id, {$set: {
+					start: event.start.toDate(),
+					end: event.end.toDate()
+				}});
 			},
 			eventResize: function (event) {
-				Meteor.call("moveHangout",
-							event.id,
-							event.start.toDate(),
-							event.end.toDate());
+				Hangouts.update(event.id, {$set: {
+					start: event.start.toDate(),
+					end: event.end.toDate()
+				}});
 			},
 			timezone: "local",
 			allDaySlot: false,
@@ -92,12 +97,16 @@ Tracker.autorun(updateCalendar);
 
 Template.calendar.events({
 	"click .delete": function () {
-		Meteor.call("removeHangout", Session.get("selectedEvent"));
+		Hangouts.remove(Session.get("selectedEvent"));
 	},
 	"click .join": function () {
-		Meteor.call("joinHangout", Session.get("selectedEvent"));
+		Hangouts.update(Session.get("selectedEvent"), {$set: {
+			guest: Meteor.userId()
+		}});
 	},
 	"click .leave": function () {
-		Meteor.call("leaveHangout", Session.get("selectedEvent"));
+		Hangouts.update(id, {$unset: {
+			guest: ""
+		}});
 	}
 });
