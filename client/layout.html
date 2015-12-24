@@ -1,8 +1,9 @@
 <template name="layout">
 	<div class="container">
 	<header>
-		<h1><strong>Hangout</strong></h1>
-		<nav id="navbar">
+		<h1 class="hidden-xs"><strong>Hangout</strong></h1>
+		<h1 class="visible-xs smallTitle"><strong>Hangout</strong></h1>
+		<nav id="navbar" class="hidden-xs">
 			<ul>
 				<li><a href="/howto">How To Use</a></li>
 				{{#if currentUser}}

@@ -4,12 +4,25 @@ header {
 	align-items: flex-end;
 }
 
+.smallTitle {
+	text-align: center;
+	width: 100%;
+}
+
 #navbar ul li {
 	display: inline;
 	margin-right: 20px;
 }
 
 #navbar ul li a {
+	font-size: 20px;
+}
+
+.navRow div div div {
+	text-align: right;
+}
+
+.navRow div div div a {
 	font-size: 20px;
 }
 
@@ -25,10 +38,64 @@ a:link, a:hover, a:active, a:visited {
 	color: inherit;
 }
 
-.fc-event {
+.bttn {
+	border: none;
+	background-color: transparent;
+}
+
+.calEvent {
 	border-radius: 0px;
+	border-width: 2px;
 }
 
 .logout {
 	cursor: pointer;
+}
+
+.color-1 {
+	background: #cc99cc;
+}
+
+.color-2 {
+	background: #f2777a;
+}
+
+.color-3 {
+	background: #6699cc;
+}
+
+.color-4 {
+	background: #99cc99;
+}
+
+.filterBar div div {
+	padding: 2px;
+}
+
+.keyLabel {
+	margin-bottom: -20px;
+	margin-top: -10px;
+}
+
+.filterBar div div div div {
+	background: rgba(255, 255, 255, 0.25);
+}
+
+.filterBar div div div h5 {
+	opacity: 1;
+	color: white;
+}
+
+.filterBar h4, .filterBar h5 {
+	width: 100%;
+	text-align: center;
+}
+
+.back {
+}
+
+.hangoutTitle {
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
 }

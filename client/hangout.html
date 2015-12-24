@@ -1,0 +1,26 @@
+<template name="hangout">
+	<div class="row">
+		<div class="col-xs-10 col-xs-push-1">
+			<div class="hangoutTitle">Hangout Details</div>
+		</div>
+		<div class="col-xs-1 col-xs-pull-10">
+			<button class="bttn back">
+				<i class="material-icons">arrow_back</i>
+			</button>
+		</div>
+	</div>
+	<hr>
+	<div class="hangoutDetails">
+		<div>Hangout Title: {{title}}</div>
+		{{#if ownsEvent}}
+			<button class="bttn delete"><i class="material-icons">delete</i></button>
+			Date: <input type="text" class="form-control datepicker">
+		{{/if}}
+		{{#if joinable}}
+			<button class="join">JOIN</button>
+		{{/if}}
+		{{#if joined}}
+			<button class="leave">LEAVE</button>
+		{{/if}}
+	</div>
+</template>
