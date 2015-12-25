@@ -7,13 +7,6 @@ Template.calendar.helpers({
 			contentHeight: "auto",
 			selectable: Meteor.userId(),
 			selectHelper: true,
-			// views: {
-			// 	agendaWeek: {
-			// 		intervalStart: function () {
-			// 			return moment().stripTime();
-			// 		}
-			// 	}
-			// },
 			select: function (start, end) {
 				var title = prompt("What should this hangout be titled");
 				if (title) {
@@ -29,7 +22,7 @@ Template.calendar.helpers({
 			},
 			allDaySlot: false,
 			timezone: "local",
-			eventColor: "#000000",
+			eventColor: "#cc99cc",
 			eventClick: function (event) {
 				Router.go("/hangout/" + event.id);
 			}

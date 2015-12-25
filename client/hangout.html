@@ -11,16 +11,35 @@
 	</div>
 	<hr>
 	<div class="hangoutDetails">
-		<div>Hangout Title: {{title}}</div>
 		{{#if ownsEvent}}
-			<button class="bttn delete"><i class="material-icons">delete</i></button>
-			Date: <input type="text" class="form-control datepicker">
-		{{/if}}
-		{{#if joinable}}
-			<button class="join">JOIN</button>
-		{{/if}}
-		{{#if joined}}
-			<button class="leave">LEAVE</button>
+			<form>
+				<div class="form-group">
+					<label for="hang-title">Title</label>
+					<input type="text" class="form-control" id="hang-title" name="title" value="{{title}}">
+				</div>
+				<div class="form-group">
+					<label for="date-picker">Date</label>
+					<input type="text" class="form-control datepicker" id="date-picker" name="date" value="{{datePlaceholder}}">
+				</div>
+				<div class="form-group">
+					<label for="start-picker">Start Time</label>
+					<input type="text" class="form-control startpicker" id="start-picker" name="start" value="{{startPlaceholder}}">
+				</div>
+				<div class="form-group">
+					<label for="end-picker">End Time</label>
+					<input type="text" class="form-control endpicker" id="end-picker" name="end" value="{{endPlaceholder}}">
+				</div>
+				<button type="submit" class="btn btn-default updateHangout">Save Changes</button>
+				<button type="button" class="btn btn-danger delete">Delete Hangout</button>
+				<span class="text-success saved"></span>
+			</form>
+		{{else}}
+			{{#if joinable}}
+				<button class="join">JOIN</button>
+			{{/if}}
+			{{#if joined}}
+				<button class="leave">LEAVE</button>
+			{{/if}}
 		{{/if}}
 	</div>
 </template>

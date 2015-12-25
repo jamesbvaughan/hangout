@@ -1,23 +1,26 @@
 <template name="layout">
 	<div class="container">
-	<header>
-		<h1 class="hidden-xs"><strong>Hangout</strong></h1>
-		<h1 class="visible-xs smallTitle"><strong>Hangout</strong></h1>
-		<nav id="navbar" class="hidden-xs">
-			<ul>
-				<li><a href="/howto">How To Use</a></li>
-				{{#if currentUser}}
-					<li><a href="/">Calendar</a></li>
-					<li><a href="/messages">Messages</a></li>
-					<li><a href="/profile">Profile</a></li>
-				{{else}}
-					<li><a href="/profile" class="logout">Login</a></li>
-				{{/if}}
-			</ul>
-		</nav>
-	</header>
-	<hr>
-	{{> yield}}
-	<hr>
+		<header>
+			<h1 class="hidden-xs"><strong>Hangout</strong></h1>
+			<h1 class="visible-xs smallTitle"><strong>Hangout</strong></h1>
+			<nav id="navbar" class="hidden-xs">
+				<ul>
+					<li><a href="/howto">How To Use</a></li>
+					{{#if currentUser}}
+						<li><a href="/">Calendar</a></li>
+						<li><a href="/messages">Messages</a></li>
+						<li><a href="/profile">Profile</a></li>
+					{{else}}
+						<li><a href="/profile" class="logout">Login</a></li>
+					{{/if}}
+				</ul>
+			</nav>
+		</header>
+		<hr>
+		{{> yield}}
+		<hr>
+		<footer>
+			<p>Created by <a href="http://jamesbvaughan.com">James Vaughan</a>.</p>
+		</footer>
 	</div>
 </template>
