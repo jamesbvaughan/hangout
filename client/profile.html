@@ -1,7 +1,8 @@
 <template name="profile">
 	{{#if currentUser}}
 		<h2>Hey {{name}}</h2>
-		<h2 class="logout">Click here to log out.</h2>
+		<p class="lead">You have added a total of {{numHangouts}} hangouts, and have joined {{numJoined}} as a guest!</p>
+		<button class="btn btn-default out" type="button">Log out</button>
 	{{else}}
 		{{> loginButtons}}
 	{{/if}}

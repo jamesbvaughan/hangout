@@ -19,26 +19,37 @@
 				</div>
 				<div class="form-group">
 					<label for="date-picker">Date</label>
-					<input type="text" class="form-control datepicker" id="date-picker" name="date" value="{{datePlaceholder}}">
+					<input type="text" class="form-control datepicker" id="date-picker" name="date" value="{{date}}">
 				</div>
 				<div class="form-group">
 					<label for="start-picker">Start Time</label>
-					<input type="text" class="form-control startpicker" id="start-picker" name="start" value="{{startPlaceholder}}">
+					<input type="text" class="form-control startpicker" id="start-picker" name="start" value="{{start}}">
 				</div>
 				<div class="form-group">
 					<label for="end-picker">End Time</label>
-					<input type="text" class="form-control endpicker" id="end-picker" name="end" value="{{endPlaceholder}}">
+					<input type="text" class="form-control endpicker" id="end-picker" name="end" value="{{end}}">
 				</div>
 				<button type="submit" class="btn btn-default updateHangout">Save Changes</button>
 				<button type="button" class="btn btn-danger delete">Delete Hangout</button>
 				<span class="text-success saved"></span>
 			</form>
 		{{else}}
+			<h2>{{title}}</h2>
+			<p class="lead">
+				This hangout is from <strong>{{start}}</strong> to <strong>{{end}}</strong> on <strong>{{fancyDate}}</strong>.
+				<br>
+				{{#if joinable}}
+					So far, no one has joined this hangout, but you're welcome to!
+				{{/if}}
+				{{#if joined}}
+					It looks like you've joined this hangout. Be sure to put it on your Calendar so you don't forget about it!
+				{{/if}}
+			</p>
 			{{#if joinable}}
-				<button class="join">JOIN</button>
+				<button class="btn btn-default join">JOIN</button>
 			{{/if}}
 			{{#if joined}}
-				<button class="leave">LEAVE</button>
+				<button class="btn btn-default leave">LEAVE</button>
 			{{/if}}
 		{{/if}}
 	</div>

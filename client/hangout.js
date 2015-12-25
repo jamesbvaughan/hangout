@@ -6,10 +6,10 @@ Template.hangout.events({
 		Router.go('/');
 	},
 	"click .join": function () {
-		Meteor.call("joinHangout", Session.get("selectedEvent"));
+		Meteor.call("joinHangout", this._id);
 	},
 	"click .leave": function () {
-		Meteor.call("leaveHangout", Session.get("selectedEvent"));
+		Meteor.call("leaveHangout", this._id);
 	},
 	"click .back": function () {
 		Router.go('/');
@@ -42,32 +42,17 @@ Template.hangout.helpers({
 	joined: function () {
 		return Meteor.userId() && this.owner != Meteor.userId() && this.guest == Meteor.userId();
 	},
-	startPlaceholder: function () {
-		var date = moment(this.start);
-		return date.format("h:mm A");
+	start: function () {
+		return moment(this.start).format("h:mm A");
 	},
-	endPlaceholder: function () {
-		var date = moment(this.end);
-		return date.format("h:mm A");
+	end: function () {
+		return moment(this.end).format("h:mm A");
 	},
-	datePlaceholder: function () {
-		var months = [
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December"
-		];
-		var date = this.start;
-		var monthNum = date.getMonth();
-		return (date.getDate() + " " + months[monthNum] + ", " + date.getFullYear());
+	date: function () {
+		return moment(this.start).format("DD MMMM, YYYY");
+	},
+	fancyDate: function () {
+		return moment(this.start).format("MMMM Do, YYYY");
 	}
 });
 

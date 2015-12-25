@@ -91,14 +91,6 @@ a:link, a:hover, a:active, a:visited {
 	color: white;
 }
 
-.filterBar h4, .filterBar h5 {
-	width: 100%;
-	text-align: center;
-}
-
-.back {
-}
-
 .hangoutTitle {
 	width: 100%;
 	text-align: center;
