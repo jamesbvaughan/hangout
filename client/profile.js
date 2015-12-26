@@ -11,16 +11,31 @@ Template.profile.helpers({
 	},
 	numJoined: function () {
 		return Hangouts.find({guest: Meteor.user()._id}).count();
+	},
+	allowed: function () {
+		return Session.get("allowed");
 	}
 });
 
 Template.profile.events({
 	"click .out": function () {
 		if (confirm("Are you sure you want to log out?")) {
-			console.log("logging out");
 			Meteor.logout();
-		} else {
-			console.log("not logging out");
 		}
+	},
+	"submit form": function (event) {
+		event.preventDefault();
+		var pass = event.target.pass.value;
+		Meteor.call("checkPassword", pass, function (err, val) {
+			Session.set("allowed", val);
+			if (!val) {
+				$("#wrongPass").show();
+			}
+		});
 	}
+});
+
+Template.profile.onRendered(function () {
+	$("#wrongPass").hide();
+	Session.set("allowed", false);
 });
