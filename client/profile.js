@@ -18,11 +18,6 @@ Template.profile.helpers({
 });
 
 Template.profile.events({
-	"click .out": function () {
-		if (confirm("Are you sure you want to log out?")) {
-			Meteor.logout();
-		}
-	},
 	"submit form": function (event) {
 		event.preventDefault();
 		var pass = event.target.pass.value;
@@ -37,5 +32,12 @@ Template.profile.events({
 
 Template.profile.onRendered(function () {
 	$("#wrongPass").hide();
-	Session.set("allowed", false);
 });
+
+Template.logoutModal.events({
+	"click .logout-btn": function () {
+		$("#logout-modal").modal("hide");
+		Meteor.logout();
+	}
+});
+

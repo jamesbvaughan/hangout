@@ -22,7 +22,8 @@ momentjs:moment
 accounts-facebook
 accounts-ui
 twbs:bootstrap
-accounts-password
 robertlowe:pickadate
 fastclick
 check
+useraccounts:bootstrap
+chriswessels:slideout

@@ -1,10 +1,4 @@
 Template.hangout.events({
-	"click .delete": function () {
-		if (confirm("For real?")) {
-			Meteor.call("removeHangout", this._id);
-		}
-		Router.go('/');
-	},
 	"click .join": function () {
 		Meteor.call("joinHangout", this._id);
 	},
@@ -28,7 +22,7 @@ Template.hangout.events({
 			start: newStart.toDate(),
 			end: newEnd.toDate()
 		});
-		$(".saved").append("Saved Successfully!");
+		$(".saved").show();
 	}
 });
 
@@ -68,4 +62,14 @@ Template.hangout.onRendered(function () {
 	$(".endpicker").pickatime({
 		min: this.data.start
 	});
+	$(".saved").hide();
+	Session.set("selectedHangout", this.data._id);
+});
+
+Template.deleteModal.events({
+	"click .delete-btn": function () {
+		var hangout = Session.get("selectedHangout");
+		Meteor.call("removeHangout", hangout);
+		Router.go('/');
+	}
 });

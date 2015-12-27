@@ -1,25 +1,45 @@
 <template name="layout">
-	<div class="container">
-		<header>
-			<h1 class="hidden-xs"><strong>Hangout</strong></h1>
-			<h1 class="visible-xs smallTitle"><strong>Hangout</strong></h1>
-			<nav id="navbar" class="hidden-xs">
-				<ul>
-					<li><a href="/howto">How To Use</a></li>
+	<div id="slideout-menu">
+		<h2>Hangout</h2>
+		<hr>
+		<button id="howto-link" class="bttn">How To Use</button>
+		<hr>
+		{{#if currentUser}}
+			<button id="calendar-link" class="bttn">Calendar</button>
+			<hr>
+			<button id="profile-link" class="bttn">Profile</button>
+			<hr>
+		{{else}}
+			<button id="login-link" class="bttn">Login</button>
+			<hr>
+		{{/if}}
+	</div>
+	{{> logoutModal}}
+	{{> deleteModal}}
+	{{> addHangoutModal}}
+	<div class="container content">
+		<button class="toggle-button visible-xs-block bttn"><i class="material-icons md-36">menu</i></button>
+		<div class="row header">
+			<div class="col-xs-12 col-sm-2">
+				<h1 class="text-center"><a href="/">Hangout</a></h1>
+			</div>
+			<div class="hidden-xs col-sm-10 text-right">
+				<h3>
+					<a href="/howto">How To Use</a>
 					{{#if currentUser}}
-						<li><a href="/">Calendar</a></li>
-						<li><a href="/profile">Profile</a></li>
+						<a href="/calendar">Calendar</a>
+						<a href="/profile">Profile</a>
 					{{else}}
-						<li><a href="/login">Login</a></li>
+						<a href="/login">Login</a>
 					{{/if}}
-				</ul>
-			</nav>
-		</header>
+				</h3>
+			</div>
+		</div>
 		<hr>
 		{{> yield}}
-		<hr>
 		<footer>
-			<p>Created by <a href="http://jamesbvaughan.com">James Vaughan</a>.</p>
+			<hr>
+			<p class="text-center">Created by <a href="http://jamesbvaughan.com" target="_blank">James Vaughan</a>.</p>
 		</footer>
 	</div>
 </template>

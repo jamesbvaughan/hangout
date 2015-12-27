@@ -8,15 +8,10 @@ Template.calendar.helpers({
 			selectable: Meteor.userId(),
 			selectHelper: true,
 			select: function (start, end) {
-				var title = prompt("What should this hangout be titled");
-				if (title) {
-					Meteor.call("addHangout", {
-						title: title,
-						start: start.toDate(),
-						end: end.toDate()
-					});
-				}
-				$("#main-calendar").fullCalendar("unselect");
+				Session.set("start", start.toDate());
+				Session.set("end", end.toDate());
+				$("#hangout-title").val('');
+				$("#add-modal").modal("show");
 			},
 			eventDrop: function (event) {
 				updateHangout(event);
@@ -72,3 +67,36 @@ function updateCalendar() {
 		}
 	});
 }
+
+Template.addHangoutModal.events({
+	"submit form": function (event) {
+		event.preventDefault();
+		var title = event.target.title.value;
+		if (title) {
+			Meteor.call("addHangout", {
+				title: title,
+				start: Session.get("start"),
+				end: Session.get("end")
+			});
+		}
+		$("#add-modal").modal("hide");
+		$("#main-calendar").fullCalendar("unselect");
+	},
+	"click .add-btn": function (event) {
+		event.preventDefault();
+		var title = $("#hangout-title").val();
+		if (title) {
+			Meteor.call("addHangout", {
+				title: title,
+				start: Session.get("start"),
+				end: Session.get("end")
+			});
+		}
+		$("#add-modal").modal("hide");
+		$("#main-calendar").fullCalendar("unselect");
+	},
+	"shown.bs.modal #add-modal": function (event) {
+		$("#hangout-title").focus();
+	}
+
+});
