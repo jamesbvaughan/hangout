@@ -11,9 +11,6 @@ Template.profile.helpers({
 	},
 	numJoined: function () {
 		return Hangouts.find({guest: Meteor.user()._id}).count();
-	},
-	allowed: function () {
-		return Session.get("allowed");
 	}
 });
 
@@ -28,10 +25,6 @@ Template.profile.events({
 			}
 		});
 	}
-});
-
-Template.profile.onRendered(function () {
-	$("#wrongPass").hide();
 });
 
 Template.logoutModal.events({
