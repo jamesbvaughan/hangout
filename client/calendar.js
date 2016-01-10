@@ -4,8 +4,8 @@ Template.calendar.helpers({
 			id: "main-calendar",
 			defaultView: "agendaWeek",
 			minTime: "07:00:00",
-			contentHeight: "auto",
 			selectable: Meteor.userId(),
+			contentHeight: "auto",
 			selectHelper: true,
 			select: function (start, end) {
 				Session.set("start", start.toDate());
@@ -29,17 +29,21 @@ Template.calendar.helpers({
 	}
 });
 
-Template.calendar.onRendered(updateCalendar);
-Tracker.autorun(updateCalendar);
+Template.calendar.onRendered(refreshCalendar);
+Tracker.autorun(refreshCalendar);
 
 function updateHangout(event) {
-	Meteor.call("updateHangout", event.id, {
-		start: event.start.toDate(),
-		end: event.end.toDate()
-	});
+	if (event.guest) {
+		//TODO: you can't change hangout with a guest
+	} else {
+		Meteor.call("updateHangout", event.id, {
+			start: event.start.toDate(),
+			end: event.end.toDate()
+		});
+	}
 }
 
-function updateCalendar() {
+function refreshCalendar() {
 	$("#main-calendar").fullCalendar("removeEvents");
 	Hangouts.find().forEach(function (hang) {
 		if (hang.owner == Meteor.userId() || hang.guest == Meteor.userId() || !hang.guest) {
@@ -59,7 +63,7 @@ function updateCalendar() {
 					title: hang.title,
 					start: moment(hang.start),
 					end: moment(hang.end),
-					editable: (Meteor.userId() && Meteor.userId() == hang.owner),
+					editable: (Meteor.userId() && Meteor.userId() == hang.owner && !hang.guest),
 					color: color,
 					className: 'calEvent'
 				},

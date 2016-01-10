@@ -28,7 +28,7 @@ Template.hangout.events({
 
 Template.hangout.helpers({
 	ownsEvent: function () {
-		return Meteor.userId() && this.owner == Meteor.userId();
+		return Meteor.userId() && this.owner == Meteor.userId() && !this.guest;
 	},
 	joinable: function () {
 		return Meteor.userId() && this.owner != Meteor.userId() && !this.guest;
