@@ -18,8 +18,8 @@ Template.layout.events({
 	"click #calendar-link": function () {
 		Router.go("/calendar");
 	},
-	"click #profile-link": function () {
-		Router.go("/profile");
+	"click #account-link": function () {
+		Router.go("/account");
 	},
 	"click #login-link": function () {
 		Router.go("/login");

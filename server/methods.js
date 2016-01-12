@@ -1,8 +1,4 @@
 Meteor.methods({
-	"test": function () {
-		var gg = Hangouts.find();
-		return Meteor.users.find();
-	},
 	"addHangout": function (data) {
 		if (!this.userId) {
 			throw new Meteor.Error("not-authorized");
@@ -63,7 +59,7 @@ Meteor.methods({
 				to:	Meteor.users.findOne(hang.guest).services.facebook.email,
 				subject:	"Someone cancelled a hangout that you joined.",
 				html:	"<h1>Sad Day</h1>" +
-						"<p>Someone cancelled a hangout on " + date + " that you had joined. (" + data.title + ")</p>" +
+						"<p>Someone cancelled a hangout on " + date + " that you had joined. (" + hang.title + ")</p>" +
 						"<p>This is a bummer. Head over to <a href=\"http://hangout.jamesbvaughan.com/calendar\">the hangout calendar</a> to join another one.</p>"
 			});
 		}
@@ -82,7 +78,7 @@ Meteor.methods({
 			to:	Meteor.user().services.facebook.email,
 			subject:	"You joined a hangout!",
 			html:	"<h1>Next Steps</h1>" +
-					"<p>You joined a hangout on " + date + "! (" + data.title + ")</p>" +
+					"<p>You joined a hangout on " + date + "! (" + hang.title + ")</p>" +
 					"<p>All you need to do now is remember to show up and make sure you don't plan anything else at that time. You should probably add it to your personal calendar so that you can remeber to keep that time open.</p>"
 		});
 		Email.send({
@@ -90,7 +86,7 @@ Meteor.methods({
 			to:	 Meteor.users.findOne(hang.owner).services.facebook.email,
 			subject:	"Someone joined your hangout!",
 			html:	"<h1>Next Steps</h1>" +
-					"<p>Someone joined your hangout on " + date + "! (" + data.title + ")</p>" +
+					"<p>Someone joined your hangout on " + date + "! (" + hang.title + ")</p>" +
 					"<p>All you need to do now is remember to show up and make sure you don't plan anything else at that time. You should probably add it to your personal calendar if you haven't already so that you can remeber to keep that time open.</p>"
 		});
 	},
@@ -108,7 +104,7 @@ Meteor.methods({
 			to:	 ownerEmail,
 			subject:	"Someone left your hangout.",
 			html:	"<h1>Sad Day</h1>" +
-					"<p>Someone who had joined your hangout on " + date + " just left it. (" + data.title + ")</p>" +
+					"<p>Someone who had joined your hangout on " + date + " just left it. (" + hang.title + ")</p>" +
 					"<p>This is unfortunate, but hopefully someone else will join. At this point you can either cancel the hangout by removing it <a href=\"http://hangout.jamesbvaughan.com/hangout/" + hangout + "\">here</a> or you can wait for someone else to join.</p>"
 		});
 	}

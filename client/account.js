@@ -1,7 +1,7 @@
-Template.profile.helpers({
+Template.account.helpers({
 	name: function () {
-		if (Meteor.user().profile) {
-			return Meteor.user().profile.name;
+		if (Meteor.user().account) {
+			return Meteor.user().account.name;
 		} else {
 			return "Anon";
 		}
@@ -14,7 +14,7 @@ Template.profile.helpers({
 	}
 });
 
-Template.profile.events({
+Template.account.events({
 	"submit form": function (event) {
 		event.preventDefault();
 		var pass = event.target.pass.value;

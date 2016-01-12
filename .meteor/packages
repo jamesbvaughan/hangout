@@ -20,7 +20,6 @@ iron:router
 rzymek:fullcalendar
 momentjs:moment
 accounts-facebook
-accounts-ui
 twbs:bootstrap
 robertlowe:pickadate
 fastclick

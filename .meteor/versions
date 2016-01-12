@@ -1,8 +1,6 @@
 accounts-base@1.2.2
 accounts-facebook@1.0.6
 accounts-oauth@1.1.8
-accounts-ui@1.1.6
-accounts-ui-unstyled@1.1.8
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -48,7 +46,6 @@ iron:router@1.0.12
 iron:url@1.0.11
 jquery@1.11.4
 launch-screen@1.0.4
-less@2.5.1
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
@@ -58,7 +55,7 @@ minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1
 mobile-status-bar@1.0.6
-momentjs:moment@2.8.4
+momentjs:moment@2.11.1
 mongo@1.1.3
 mongo-id@1.0.1
 npm-mongo@1.4.39_1
@@ -75,7 +72,7 @@ reload@1.1.4
 retry@1.0.4
 robertlowe:pickadate@3.5.5
 routepolicy@1.0.6
-rzymek:fullcalendar@2.4.0
+rzymek:fullcalendar@2.6.0
 service-configuration@1.0.5
 session@1.1.1
 softwarerero:accounts-t9n@1.1.7
@@ -85,7 +82,7 @@ standard-minifiers@1.0.2
 templating@1.1.5
 templating-tools@1.0.0
 tracker@1.0.9
-twbs:bootstrap@3.3.5
+twbs:bootstrap@3.3.6
 ui@1.0.8
 underscore@1.0.4
 url@1.0.5
