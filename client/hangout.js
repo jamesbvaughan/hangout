@@ -47,6 +47,9 @@ Template.hangout.helpers({
 	},
 	fancyDate: function () {
 		return moment(this.start).format("MMMM Do, YYYY");
+	},
+	tooMuch: function () {
+		return "You're doing that too much! Try again in a few minutes.";
 	}
 });
 
@@ -63,6 +66,7 @@ Template.hangout.onRendered(function () {
 		min: this.data.start
 	});
 	$(".saved").hide();
+	$("#too-much").hide();
 	Session.set("selectedHangout", this.data._id);
 });
 

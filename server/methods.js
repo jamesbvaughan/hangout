@@ -107,6 +107,12 @@ Meteor.methods({
 					"<p>Someone who had joined your hangout on " + date + " just left it. (" + hang.title + ")</p>" +
 					"<p>This is unfortunate, but hopefully someone else will join. At this point you can either cancel the hangout by removing it <a href=\"http://hangout.jamesbvaughan.com/hangout/" + hangout + "\">here</a> or you can wait for someone else to join.</p>"
 		});
+	},
+	"removeAllHangouts": function (pass) {
+		// Please don't do this.
+		if (pass == "bad password") {
+			Hangouts.remove({});
+		}
 	}
 });
 

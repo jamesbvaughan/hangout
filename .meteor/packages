@@ -27,3 +27,4 @@ check
 useraccounts:bootstrap
 chriswessels:slideout
 email
+ddp-rate-limiter
